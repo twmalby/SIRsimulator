@@ -5,7 +5,7 @@ import random
 import csv
 
 #### VALORI MODIFICABILI DALL'UTENTE ### #Sia G = (V,E) grafo
-nodes = 1000 # |V| = nodes ( vertici )
+nodes = 1200 # |V| = nodes ( vertici )
 ite = 5 # numero di iterazioni
 percentuale = 0.7 # percentuale degli archi modificati
 #################################################
@@ -44,7 +44,7 @@ def ProllyToCare() :
     global flag
 
     if S>0 :
-        if random.uniform(0,1)>0.90  : #percentuale di guarire
+        if random.uniform(0,1)>0.85  : #percentuale di guarire
             S=S-1
 
             I=I+1
@@ -141,7 +141,7 @@ def ComputingRandomNoGUI() : # Algoritmo casuale
 	z = random.sample(numpy.where(M[randspreadid,:]==1)[0],1)[0] # Tra i contatti di randspreadid seleziono un nodo a caso connesso
 
 	if RegistroColoriCoord[z,0]==verde : # Se i l nodo z−esimo selezionato è verde
-		if random.uniform(0,1)>0.0001 : # Controllo se è tendenzialmente Rosso
+		if random.uniform(0,1)>0.0000001 : # Controllo se è tendenzialmente Rosso
 			RegistroColoriCoord[z,0]= rosso # In questo caso coloro i l nodo z−esimo di Rosso
 			SmeetIC()
 
@@ -176,12 +176,6 @@ def SalvaFileStaticoNormale () :
 			while S>0:
 				ComputingRandomNoGUI()
 
-
-def SalvaFileGrafoCompletoStatico() :
-
-	RegistroColoriCoordVerdi()
-	CreaGrafoCompleto()
-	CreaScenario()
 
 
 
@@ -227,10 +221,8 @@ def SalvaFileVariabileNormale() :
 
 
 
-def SalvaFileGrafoCompletoVariabile() :
-	RegistroColoriCoordVerdi()
-	CreaGrafoCompleto()
-	CreaScenario()
+
+
 
 
 
