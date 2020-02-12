@@ -24,6 +24,7 @@ rosso = 2
 verde = 1 # i l verde nella grafica è associato agli Ignorants
 bianco =0 # i l bianco nella grafica è associato agli S t i f l e r s
 RegistroColoriCoord = None
+curati = 0
 def SmeetIC() : # (I ,S,R) |− (I−1, S+1,R)
 	global I
 	global S
@@ -31,7 +32,7 @@ def SmeetIC() : # (I ,S,R) |− (I−1, S+1,R)
 	global K
 	I=I-1
 	S=S+1
-	C=C+1 # Segno in C che è avvenuta una azione di SPREAD
+	# Segno in C che è avvenuta una azione di SPREAD
 	K=K+1 # Solo in SmeetIC() g l i Spreaders aumentano , quindi lo segno nel contatore K
 	print "S vs I susceptible " ,[ I ,S ,R,G]
 
@@ -40,8 +41,8 @@ def ProllyToCare() :
     global R
     global C
     global S
-
     global flag
+
     if S>0 :
         if random.uniform(0,1)>0.70  : #percentuale di guarire
             S=S-1
@@ -49,8 +50,9 @@ def ProllyToCare() :
             I=I+1
 
             flag = 1
-            C=C+1 # Segno in C che è avvenuta una azione di SPREAD
-            print "An infected is recovered :)",[I,S,R,G]
+            C=C+1 # curati
+            print "An infected is recovered :)",[I,S,R,C]
+
         else :
             S=S-1
             R=R+1
@@ -58,7 +60,7 @@ def ProllyToCare() :
 
             C=C
             flag = 0 # dec
-            print "An infected died!  :(",[I,S,R,G]
+            print "An infected died!  :(",[I,S,R,C]
     print "Nobody can be cared!"
 
 
@@ -161,11 +163,11 @@ def SalvaFileStaticoNormale () :
 
 	with open('RandomStat4b.csv','w') as csvfile :
 		spamwriter = csv.writer(csvfile,delimiter=',',quotechar='|',quoting=csv.QUOTE_MINIMAL)
-		spamwriter.writerow(['incontaminati+guariti','s-spread','r-deceduti'])
+		spamwriter.writerow(['incontaminati+guariti','s-spread','r-deceduti','sologuariti'])
 		for x in range (0,ite) :
 			with open('RandomFlip4b.csv','w') as csvfile :
 				spamwriter = csv.writer(csvfile,delimiter=',',quotechar='|',quoting=csv.QUOTE_MINIMAL)
-				spamwriter.writerow([I,S,R])
+				spamwriter.writerow([I,S,R,C])
 			print "Saving data base f i l e . . . "
 			RegistroColoriCoordVerdi()
 			CreaGrafoRandom()
@@ -208,12 +210,12 @@ def SalvaFileVariabileNormale() :
 
 	with open('RandomFlip4b.csv','w') as csvfile :
 		spamwriter = csv.writer(csvfile,delimiter=',',quotechar='|',quoting=csv.QUOTE_MINIMAL)
-		spamwriter.writerow(['incontaminato+guariti','s-spread','r-deceduti'])
+		spamwriter.writerow(['incontaminato+guariti','s-spread','r-deceduti','sologuariti'])
 		for x in range (0,ite) :
 			print "Saving data base f i l e . . . "
 			with open('RandomFlip4b.csv','w') as csvfile :
 				spamwriter = csv.writer(csvfile,delimiter=',',quotechar='|',quoting=csv.QUOTE_MINIMAL)
-				spamwriter.writerow([I,S,R])
+				spamwriter.writerow([I,S,R,C])
 			RegistroColoriCoordVerdi()
 			CreaGrafoRandom()
 			CreaScenario()
