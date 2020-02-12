@@ -4,13 +4,13 @@ import numpy
 import random
 import csv
 
-############### VALORI MODIFICABILI DALL'UTENTE ### #Sia G = (V,E) grafo ##########################
+############### USER CUSTOM DATA              ### #Let G = (V,E) graph ##########################
 nodes = 1200 # |V| = nodes, population								#
-ite = 10 # iterations										#
-percentuale = 0.7 #percentage of flips of the edges						#
-alfa1 = 0.60 # percentage of contagious				#
-beta = 0.40 # percentage of surviving								#
-S = 10  # infected-spreaders									#
+ite = 10 # final iterations										#
+percentuale = 0.7 #percentage of flips of the edges	(figure the mutability of 2 nodes to match or less anymore randmoly)				#
+alfa1 = 0.60 # percentage of contagiousity between one infected node and one healty node				#
+beta = 0.40 # percentage of surviving of one infected node								#
+S = 10  # infected-spreaders	at the beginning	of the simulation					#
 ####################################################################################################
 flag = 0
 edges = random.sample(range(2*nodes,int(((nodes*nodes)-nodes)*0.5)),1)[0]# |E| = edges ( archi )
