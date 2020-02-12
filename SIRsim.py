@@ -4,18 +4,22 @@ import numpy
 import random
 import csv
 
-#### VALORI MODIFICABILI DALL'UTENTE ### #Sia G = (V,E) grafo
-nodes = 1200 # |V| = nodes ( vertici )
-ite = 10 # numero di iterazioni
-percentuale = 0.7 # percentuale degli archi modificati
-#################################################
+############### VALORI MODIFICABILI DALL'UTENTE ### #Sia G = (V,E) grafo ##########################
+nodes = 1200 # |V| = nodes, population								#
+ite = 10 # iterations										#
+percentuale = 0.7 #percentage of flips of the edges						#
+alfa1 = 0.60 # percentage of contagious				#
+beta = 0.40 # percentage of surviving								#
+S = 10  # infected-spreaders									#
+####################################################################################################
 flag = 0
 edges = random.sample(range(2*nodes,int(((nodes*nodes)-nodes)*0.5)),1)[0]# |E| = edges ( archi )
 valore = int(edges*percentuale)# calcolo percentuale discretizzata
 G = 0 # guariti
-S = 200 # inizializzazione degli Spreaders
+ # inizializzazione degli Spreaders
 R = 0 # inizializzazione Refrattari
 I = nodes-S
+alfa = 1-alfa1
 K = 1 # Spreaders cumulativi
 C = 0 # c i c l i t o t a l i azioni compiute dagli Spreaders
 SpreaderRate = K / nodes # i l rosso nella grafica è associato agli Spreaders
@@ -44,7 +48,7 @@ def ProllyToCare() :
     global flag
 
     if S>0 :
-        if random.uniform(0,1)>0.99  : #percentuale di guarire
+        if random.uniform(0,1)> beta  : #percentuale di guarire
             S=S-1
 
             I=I+1
@@ -80,8 +84,8 @@ def RegistroColoriCoordVerdi () : # coloro tutto di verde , quindi resetto lo sc
 
 		(RegistroColoriCoord[x,0]) = verde
 
-	S = 0
-	I = nodes
+	
+	I = nodes-S
 	R = 0
 	C = 0
 	K = 1
@@ -91,9 +95,9 @@ def CreaScenario() : # piazza uno Spreader a random, g l i a l t r i restano ver
 	global S
 	global R
 	global RegistroColoriCoord
-	S = 9
+	S = 3
 
-	I = I - 9
+	I = I - S
 	for t in range(0,S):
 		RegistroColoriCoord[t,0]=rosso
 
@@ -132,7 +136,7 @@ def ComputingRandomNoGUI() : # Algoritmo casuale
 	z = random.sample(numpy.where(M[randspreadid,:]==1)[0],1)[0] # Tra i contatti di randspreadid seleziono un nodo a caso connesso
 
 	if RegistroColoriCoord[z,0]==verde : # Se i l nodo z−esimo selezionato è verde
-		if random.uniform(0,1)>0 : # Controllo se è tendenzialmente Rosso
+		if random.uniform(0,1)> alfa : # Controllo se è tendenzialmente Rosso
 			RegistroColoriCoord[z,0]= rosso # In questo caso coloro i l nodo z−esimo di Rosso
 			SmeetIC()
 
