@@ -87,13 +87,13 @@ def RegistroColoriCoordVerdi () : # coloro tutto di verde , quindi resetto lo sc
 	K = 1
 
 def CreaScenario() : # piazza uno Spreader a random, g l i a l t r i restano verdi
-    global I
-    global S
-    global R
-    global RegistroColoriCoord
-    S = 9
+	global I
+	global S
+	global R
+	global RegistroColoriCoord
+	S = 9
 
-    I = I - 9
+	I = I - 9
 	for t in range(0,S):
 		RegistroColoriCoord[t,0]=rosso
 
@@ -136,11 +136,11 @@ def ComputingRandomNoGUI() : # Algoritmo casuale
 			RegistroColoriCoord[z,0]= rosso # In questo caso coloro i l nodo z−esimo di Rosso
 			SmeetIC()
 
-        ProllyToCare()
-        if flag == 0 :
-            random.sample(numpy.where(RegistroColoriCoord[:,0]== rosso)[0],1)[0] = 0
-        if flag == 1 :
-            random.sample(numpy.where(RegistroColoriCoord[:,0]== rosso)[0],1)[0] = 1
+			ProllyToCare()
+		if flag == 0 :
+			random.sample(numpy.where(RegistroColoriCoord[:,0]== rosso)[0],1)[0] = 0
+		if flag == 1 :
+			random.sample(numpy.where(RegistroColoriCoord[:,0]== rosso)[0],1)[0] = 1
 
 
 
