@@ -9,7 +9,7 @@ nodes = 1200 # |V| = nodes, population								#
 ite = 10 # final iterations										#
 percentuale = 0.7 #percentage of flips of the edges	(figure the mutability of 2 nodes to match or less anymore randmoly)				#
 alfa1 = 0.60 # percentage of contagiousity between one infected node and one healty node				#
-beta = 0.40 # percentage of surviving of one infected node								#
+beta1 = 0.40 # percentage of surviving of one infected node								#
 S = 10  # infected-spreaders	at the beginning	of the simulation					#
 ####################################################################################################
 flag = 0
@@ -20,9 +20,11 @@ G = 0 # guariti
 R = 0 # inizializzazione Refrattari
 I = nodes-S
 alfa = 1-alfa1
+beta = 1-beta1
 K = 1 # Spreaders cumulativi
 C = 0 # c i c l i t o t a l i azioni compiute dagli Spreaders
 SpreaderRate = K / nodes # i l rosso nella grafica è associato agli Spreaders
+
 giallo = 3
 rosso = 2
 verde = 1 # i l verde nella grafica è associato agli Ignorants
