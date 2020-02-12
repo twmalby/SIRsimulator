@@ -7,7 +7,7 @@ import csv
 #### VALORI MODIFICABILI DALL'UTENTE ### #Sia G = (V,E) grafo
 nodes = 1000 # |V| = nodes ( vertici )
 ite = 5 # numero di iterazioni
-percentuale = 0.5 # percentuale degli archi modificati
+percentuale = 0.7 # percentuale degli archi modificati
 #################################################
 flag = 0
 edges = random.sample(range(2*nodes,int(((nodes*nodes)-nodes)*0.5)),1)[0]# |E| = edges ( archi )
@@ -32,9 +32,9 @@ def SmeetIC() : # (I ,S,R) |− (I−1, S+1,R)
 	global K
 	I=I-1
 	S=S+1
-	# Segno in C che è avvenuta una azione di SPREAD
-	K=K+1 # Solo in SmeetIC() g l i Spreaders aumentano , quindi lo segno nel contatore K
-	print "S vs I susceptible " ,[ I ,S ,R,G]
+
+
+	print "S vs I susceptible ",[ I ,S ,R,C]
 
 def ProllyToCare() :
     global I
@@ -44,7 +44,7 @@ def ProllyToCare() :
     global flag
 
     if S>0 :
-        if random.uniform(0,1)>0.70  : #percentuale di guarire
+        if random.uniform(0,1)>0.90  : #percentuale di guarire
             S=S-1
 
             I=I+1
@@ -61,7 +61,7 @@ def ProllyToCare() :
             C=C
             flag = 0 # dec
             print "An infected died!  :(",[I,S,R,C]
-    print "Nobody can be cared!"
+    print "Nobody can be cared!",[I,S,R,C]
 
 
 
@@ -141,7 +141,7 @@ def ComputingRandomNoGUI() : # Algoritmo casuale
 	z = random.sample(numpy.where(M[randspreadid,:]==1)[0],1)[0] # Tra i contatti di randspreadid seleziono un nodo a caso connesso
 
 	if RegistroColoriCoord[z,0]==verde : # Se i l nodo z−esimo selezionato è verde
-		if random.uniform(0,1)>0.10 : # Controllo se è tendenzialmente Rosso
+		if random.uniform(0,1)>0.0001 : # Controllo se è tendenzialmente Rosso
 			RegistroColoriCoord[z,0]= rosso # In questo caso coloro i l nodo z−esimo di Rosso
 			SmeetIC()
 
@@ -149,7 +149,7 @@ def ComputingRandomNoGUI() : # Algoritmo casuale
         if flag == 0 :
             random.sample(numpy.where(RegistroColoriCoord[:,0]== rosso)[0],1)[0] = 0
         if flag == 1 :
-            random.sample(numpy.where(RegistroColoriCoord[:,0]== rosso)[0],1)[0] = 3
+            random.sample(numpy.where(RegistroColoriCoord[:,0]== rosso)[0],1)[0] = 1
 
 
 
@@ -221,7 +221,7 @@ def SalvaFileVariabileNormale() :
 			CreaScenario()
 
 			while S>0:
-				if random.uniform (0,1) > 0.99 :
+				if random.uniform (0,1) > 0.40 :
 					CambiaMatrice()
 				ComputingRandomNoGUI()
 
