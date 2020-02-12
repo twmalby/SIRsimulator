@@ -4,27 +4,28 @@ import numpy
 import random
 import csv
 
-############### USER CUSTOM DATA              ### #Let G = (V,E) graph ##########################
+############### VALORI MODIFICABILI DALL'UTENTE ### #Sia G = (V,E) grafo ##########################
 nodes = 1200 # |V| = nodes, population								#
-ite = 10 # final iterations										#
-percentuale = 0.7 #percentage of flips of the edges	(figure the mutability of 2 nodes to match or less anymore randmoly)				#
-alfa1 = 0.60 # percentage of contagiousity between one infected node and one healty node				#
-beta1 = 0.40 # percentage of surviving of one infected node								#
-S = 10  # infected-spreaders	at the beginning	of the simulation					#
+ite = 10 # iterations										#
+percentuale = 0.7 #percentage of flips of the edges						#
+alfa1 = 0.9 # percentage of not survive
+beta1 = 0.2# percentage of recovery
+S = 3  # infected-spreaders									#
 ####################################################################################################
 flag = 0
 edges = random.sample(range(2*nodes,int(((nodes*nodes)-nodes)*0.5)),1)[0]# |E| = edges ( archi )
 valore = int(edges*percentuale)# calcolo percentuale discretizzata
 G = 0 # guariti
- # inizializzazione degli Spreaders
+S = 0 # inizializzazione degli Spreaders
 R = 0 # inizializzazione Refrattari
 I = nodes-S
-alfa = 1-alfa1
-beta = 1-beta1
+alfa = 1 - alfa1
+beta = 1- beta1
+
+
 K = 1 # Spreaders cumulativi
 C = 0 # c i c l i t o t a l i azioni compiute dagli Spreaders
 SpreaderRate = K / nodes # i l rosso nella grafica è associato agli Spreaders
-
 giallo = 3
 rosso = 2
 verde = 1 # i l verde nella grafica è associato agli Ignorants
@@ -50,7 +51,7 @@ def ProllyToCare() :
     global flag
 
     if S>0 :
-        if random.uniform(0,1)> beta  : #percentuale di guarire
+        if random.uniform(0,1)> beta  : #percentuale di non guarire
             S=S-1
 
             I=I+1
@@ -86,7 +87,7 @@ def RegistroColoriCoordVerdi () : # coloro tutto di verde , quindi resetto lo sc
 
 		(RegistroColoriCoord[x,0]) = verde
 
-	
+	S = 0
 	I = nodes-S
 	R = 0
 	C = 0
@@ -147,6 +148,7 @@ def ComputingRandomNoGUI() : # Algoritmo casuale
 			random.sample(numpy.where(RegistroColoriCoord[:,0]== rosso)[0],1)[0] = 0
 		if flag == 1 :
 			random.sample(numpy.where(RegistroColoriCoord[:,0]== rosso)[0],1)[0] = 1
+
 
 
 
