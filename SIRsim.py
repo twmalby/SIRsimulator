@@ -6,14 +6,14 @@ import csv
 
 #### VALORI MODIFICABILI DALL'UTENTE ### #Sia G = (V,E) grafo
 nodes = 1200 # |V| = nodes ( vertici )
-ite = 5 # numero di iterazioni
+ite = 10 # numero di iterazioni
 percentuale = 0.7 # percentuale degli archi modificati
 #################################################
 flag = 0
 edges = random.sample(range(2*nodes,int(((nodes*nodes)-nodes)*0.5)),1)[0]# |E| = edges ( archi )
 valore = int(edges*percentuale)# calcolo percentuale discretizzata
 G = 0 # guariti
-S = 10 # inizializzazione degli Spreaders
+S = 200 # inizializzazione degli Spreaders
 R = 0 # inizializzazione Refrattari
 I = nodes-S
 K = 1 # Spreaders cumulativi
@@ -29,12 +29,12 @@ def SmeetIC() : # (I ,S,R) |− (I−1, S+1,R)
 	global I
 	global S
 	global C
-	global K
+
 	I=I-1
 	S=S+1
 
 
-	print "S vs I susceptible ",[ I ,S ,R,C]
+	print "One is infected ",[ I ,S ,R ,C ]
 
 def ProllyToCare() :
     global I
@@ -44,7 +44,7 @@ def ProllyToCare() :
     global flag
 
     if S>0 :
-        if random.uniform(0,1)>0.85  : #percentuale di guarire
+        if random.uniform(0,1)>0.99  : #percentuale di guarire
             S=S-1
 
             I=I+1
@@ -53,7 +53,7 @@ def ProllyToCare() :
             C=C+1 # curati
             print "An infected is recovered :)",[I,S,R,C]
 
-        else :
+        else:
             S=S-1
             R=R+1
             I=I
@@ -92,19 +92,10 @@ def CreaScenario() : # piazza uno Spreader a random, g l i a l t r i restano ver
     global R
     global RegistroColoriCoord
     S = 9
-    I = I - 9
-    if S>0 :
-        RegistroColoriCoord[10,0]= rosso # Scelgo un rosso a caso .
-        RegistroColoriCoord[20,0]= rosso # Scelgo un rosso a caso .
-        RegistroColoriCoord[33,0]= rosso # Scelgo un rosso a caso .
-        RegistroColoriCoord[45,0]= rosso # Scelgo un rosso a caso .
-        RegistroColoriCoord[51,0]= rosso # Scelgo un rosso a caso .
-        RegistroColoriCoord[16,0]= rosso # Scelgo un rosso a caso .
-        RegistroColoriCoord[740,0]= rosso # Scelgo un rosso a caso .
-        RegistroColoriCoord[81,0]= rosso # Scelgo un rosso a caso .
-        RegistroColoriCoord[19,0]= rosso # Scelgo un rosso a caso .
 
-    #I = nodes-S
+    I = I - 9
+	for t in range(0,S):
+		RegistroColoriCoord[t,0]=rosso
 
 def CreaGrafoCompleto() : # crea una matrice di adiacenza per i l grafo completo .
 	global M
@@ -141,7 +132,7 @@ def ComputingRandomNoGUI() : # Algoritmo casuale
 	z = random.sample(numpy.where(M[randspreadid,:]==1)[0],1)[0] # Tra i contatti di randspreadid seleziono un nodo a caso connesso
 
 	if RegistroColoriCoord[z,0]==verde : # Se i l nodo z−esimo selezionato è verde
-		if random.uniform(0,1)>0.0000001 : # Controllo se è tendenzialmente Rosso
+		if random.uniform(0,1)>0 : # Controllo se è tendenzialmente Rosso
 			RegistroColoriCoord[z,0]= rosso # In questo caso coloro i l nodo z−esimo di Rosso
 			SmeetIC()
 
