@@ -1,11 +1,11 @@
 The user can modify those parametes safety
-############### USER CUSTOM DATA              ### #Let G = (V,E) graph ##########################
+############### VALORI MODIFICABILI DALL'UTENTE ### #Sia G = (V,E) grafo ##########################
 nodes = 1200 # |V| = nodes, population								#
-ite = 10 # final iterations										#
-percentuale = 0.7 #percentage of flips of the edges	(figure the mutability of 2 nodes to match or less anymore randmoly)				#
-alfa1 = 0.60 # percentage of contagiousity between one infected node and one healty node				#
-beta1 = 0.40 # percentage of surviving of one infected node								#
-S = 10  # infected-spreaders	at the beginning	of the simulation					#
+ite = 10 # iterations										#
+percentuale = 0.7 #percentage of flips of the edges						#
+alfa1 = 0.9 # percentage of to be contaged
+beta1 = 0.2# percentage of recovery
+S = 3  # infected-spreaders									#
 ####################################################################################################
 
 To collect more info about that work,
