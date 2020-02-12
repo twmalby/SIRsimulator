@@ -1,5 +1,5 @@
 The user can modify those parametes safety
-############### VALORI MODIFICABILI DALL'UTENTE ### #Sia G = (V,E) grafo ##########################
+############### CUSTOM VALUES ### # G = (V,E)  ##########################
 nodes = 1200 # |V| = nodes, population								#
 ite = 10 # iterations										#
 percentuale = 0.7 #percentage of flips of the edges						#
