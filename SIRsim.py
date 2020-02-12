@@ -8,7 +8,7 @@ import csv
 nodes = 1200 # |V| = nodes, population								#
 ite = 10 # iterations										#
 percentuale = 0.7 #percentage of flips of the edges						#
-alfa1 = 0.9 # percentage of not survive
+alfa1 = 0.9 # percentage of to be contaged
 beta1 = 0.2# percentage of recovery
 S = 3  # infected-spreaders									#
 ####################################################################################################
