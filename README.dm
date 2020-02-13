@@ -1,3 +1,4 @@
+# SIR Simulator
 The user can modify those parametes safety
 ############### CUSTOM VALUES ### # G = (V,E)  ##########################
 nodes = 1200 # |V| = nodes, population								#
