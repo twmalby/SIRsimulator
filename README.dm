@@ -6,7 +6,7 @@ ite = 10 # iterations										#
 percentuale = 0.7 #percentage of flips of the edges						#
 alfa1 = 0.9 # percentage of to be contaged
 beta1 = 0.2# percentage of recovery
-S = 3  # infected-spreaders									#
+S = 3  # infected-spreaders									##
 
 
 
