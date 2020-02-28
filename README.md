@@ -9,7 +9,7 @@ beta1 = 0.2# percentage of recovery
 S = 3  # infected-spreaders									##
 
 
-
+![image](/graph.png)
 
 To collect more info about that work,
 at beginning it was related the Rumors spread only
